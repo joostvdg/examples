@@ -45,7 +45,8 @@ const k8sClusters = aksClusterConfig.map((perClusterConfig, index) => {
             clientSecret: adSpPassword.value,
         },
         // Per-cluster config arguments
-        location: perClusterConfig.location,
+        //location: perClusterConfig.location, // <-- CORRECT code
+        location: config.location, // <-- Code that causes orphaned AKS cluster for accounts with low quota (ie. max of 10 cores)
         agentPoolProfile: {
             name: "aksagentpool",
             count: perClusterConfig.nodeCount,
